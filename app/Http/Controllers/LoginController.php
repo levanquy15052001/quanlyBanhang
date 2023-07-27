@@ -3,16 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
-    public function loginForm()
+    public function loginForm(Request $request)
     {
-        return view('login');
-    }
+        if ($request->getMethod() == 'GET') {
+            return view('login');
+        }
 
-    public function register()
-    {
-        return view('register');
+        $credentials = $request->only(['email', 'password']);
+        if (Auth::attempt($credentials)) {
+            return redirect()->route('homePage');
+        } else {
+            return redirect()->back()->withInput();
+        }
+
     }
 }

@@ -1,51 +1,61 @@
 @extends('layout.master')
+@push('style')
+    <style>
+        .error{
+            color: red
+        }
+    </style>
+@endpush
 @section('content')
-<div class="container">
-    <div id="content">
+    <div class="container">
+        <div id="content">
 
-        <form action="#" method="post" class="beta-form-checkout">
-            <div class="row">
-                <div class="col-sm-3"></div>
-                <div class="col-sm-6">
-                    <h4>Đăng kí</h4>
-                    <div class="space20">&nbsp;</div>
-
-
-                    <div class="form-block">
-                        <label for="email">Email address*</label>
-                        <input type="email" id="email" required>
-                    </div>
-
-                    <div class="form-block">
-                        <label for="your_last_name">Fullname*</label>
-                        <input type="text" id="your_last_name" required>
-                    </div>
-
-                    <div class="form-block">
-                        <label for="adress">Address*</label>
-                        <input type="text" id="adress" value="Street Address" required>
-                    </div>
+            <form action="{{ route('register') }}" method="POST" class="beta-form-checkout">
+                @csrf
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <h4>Đăng kí</h4>
+                        <div class="space20">&nbsp;</div>
 
 
-                    <div class="form-block">
-                        <label for="phone">Phone*</label>
-                        <input type="text" id="phone" required>
+                        <div class="form-block">
+                            <label for="email">Email</label>
+                            <input type="text" id="email" name="email" value="{{ old('email') }}">
+                            @if ($errors->has('email'))
+                                <span class="error">{{ $errors->first('email') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="form-block">
+                            <label for="name">Họ Và Tên</label>
+                            <input type="text" id="name" name="name" value="{{ old('name') }}">
+                            @if ($errors->has('email'))
+                                <span class="error">{{ $errors->first('name') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="form-block">
+                            <label for="password">Tạo Mật Khẩu</label>
+                            <input type="password" id="password" name="password">
+                            @if ($errors->has('password'))
+                                <span class="error">{{ $errors->first('password') }}</span>
+                            @endif
+                        </div>
+                        <div class="form-block">
+                            <label for="confirm_password">Xác Nhận Mật Khẩu</label>
+                            <input type="password" id="confirm_password" name="confirm_password">
+                            @if ($errors->has('confirm_password'))
+                                <span class="error">{{ $errors->first('confirm_password') }}</span>
+                            @endif
+                        </div>
+                        <div class="form-block">
+                            <button type="submit" class="btn btn-primary">Đăng ký</button>
+                        </div>
                     </div>
-                    <div class="form-block">
-                        <label for="phone">Password*</label>
-                        <input type="text" id="phone" required>
-                    </div>
-                    <div class="form-block">
-                        <label for="phone">Re password*</label>
-                        <input type="text" id="phone" required>
-                    </div>
-                    <div class="form-block">
-                        <button type="submit" class="btn btn-primary">Register</button>
-                    </div>
+                    <div class="col-sm-3"></div>
                 </div>
-                <div class="col-sm-3"></div>
-            </div>
-        </form>
-    </div> <!-- #content -->
-</div> <!-- .container -->
+            </form>
+        </div> <!-- #content -->
+    </div> <!-- .container -->
 @endsection
