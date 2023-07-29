@@ -10,7 +10,7 @@
             <div class="pull-right auto-width-right">
                 <ul class="top-details menu-beta l-inline">
                     @if (Auth::check())
-                        <li><a href="#"><i class="fa fa-user"></i> {{ Auth::user()->name }}</a></li>
+                        <li><a href="#"><i class="fa fa-user"></i></a></li>
                         <li><a href="{{route('logout')}}">Đăng Xuất</a></li>
                     @else
                         <li><a href="">Đăng kí</a></li>
@@ -24,7 +24,7 @@
     <div class="header-body">
         <div class="container beta-relative">
             <div class="pull-left">
-                <a href="index.html" id="logo"><img src="{{ asset('template/assets/dest/images/logo-cake.png') }}"
+                <a href="{{route('homePage')}}" id="logo"><img src="{{ asset('template/assets/dest/images/logo-cake.png') }}"
                         width="200px" alt=""></a>
             </div>
             <div class="pull-right beta-components space-left ov">

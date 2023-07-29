@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Slide;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $slide=Slide::all();
+        View::share('slide',$slide); 
     }
 }

@@ -19,15 +19,26 @@
 
                     <div class="form-block">
                         <label for="email"> Tài Khoản </label>
-                        <input type="text" id="email" name="email" required>
+                        <input type="text" id="email" name="email">
+                        @if ($errors->has('email'))
+                            <span class="error">{{ $errors->first('email') }}</span>
+                        @endif
                     </div>
                     <div class="form-block">
-                        <label for="phone"> Mật Khẩu</label>
-                        <input type="text" id="phone" name="password" required>
+                        <label for="password"> Mật Khẩu</label>
+                        <input type="password" id="password" name="password">
+                        @if ($errors->has('password'))
+                            <span class="error">{{ $errors->first('password') }}</span>
+                        @endif
                     </div>
                     <div class="form-block">
                         <button type="submit" class="btn btn-primary">Đăng nhập</button>
                     </div>
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger">
+                            {{ Session::get('error')}}
+                        </div>
+                    @endif  
                 </div>
                 <div class="col-sm-3"></div>
             </div>
