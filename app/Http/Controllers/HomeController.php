@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +15,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $products = Product::with(['getCategory','getBrand'])->get();
+        $data = [
+            'products' => $products
+        ];
+        return view('home',compact('data'));
     }
 
     /**
@@ -44,9 +49,12 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        //
+        $data = [
+            'product' => $product
+        ];
+        return view('product',compact('data'));
     }
 
     /**
