@@ -20,3 +20,4 @@ Route::match(['get', 'post'], '/login', [LoginController::class, 'loginForm'])->
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 Route::get('/register',[RegisterController::class,'registerForm'])->name('register');
 Route::post('/register',[RegisterController::class,'store'])->name('store.register');
+Route::get('/product/{product}',[HomeController::class,'show'])->name('product.detail');

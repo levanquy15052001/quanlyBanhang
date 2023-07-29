@@ -11,26 +11,30 @@
                     <div class="beta-products-list">
                         <h4>New Products</h4>
                         <div class="beta-products-details">
-                            <p class="pull-left">438 styles found</p>
+                            <p class="pull-left">{{count($data['products'])}} styles found</p>
                             <div class="clearfix"></div>
                         </div>
                         <div class="row">
+                            @foreach ($data['products'] as $item)
                             <div class="col-sm-3">
                                 <div class="single-item">
-                                    <div class="ribbon-wrapper">
-                                        <div class="ribbon sale">Sale</div>
-                                    </div>
-
+                                    @if($item->price_sale !=null)
+                                        <div class="ribbon-wrapper">
+                                            <div class="ribbon sale">Sale</div>
+                                        </div>
+                                    @endif
                                     <div class="single-item-header">
-                                        <a href="product.html"><img
-                                                src="{{ asset('template/assets/dest/images/products/2.jpg') }}"
-                                                alt=""></a>
+                                        <a href="{{route('product.detail',$item->product_id)}}">
+                                             <img src="{{ asset('template/image/product/'.$item->image) }}" height="320">
+                                        </a>
                                     </div>
                                     <div class="single-item-body">
-                                        <p class="single-item-title">Sample Woman Top</p>
+                                        <p class="single-item-title">{{$item->name}}</p>
                                         <p class="single-item-price">
-                                            <span class="flash-del">$34.55</span>
-                                            <span class="flash-sale">$33.55</span>
+                                            @if($item->price_sale !=null)
+                                                <span class="flash-del">{{$item->price_sale}} $</span>
+                                            @endif
+                                            <span class="flash-sale">{{$item->price}} $</span>
                                         </p>
                                     </div>
                                     <div class="single-item-caption">
@@ -42,6 +46,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
                     </div> <!-- .beta-products-list -->
                 </div>

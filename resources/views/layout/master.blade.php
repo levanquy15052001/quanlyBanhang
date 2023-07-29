@@ -15,6 +15,7 @@
     <link rel="stylesheet" title="style" href="{{ asset('template/assets/dest/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('template/assets/dest/css/animate.css') }}">
     <link rel="stylesheet" title="style" href="{{ asset('template/assets/dest/css/huong-style.css') }}">
+    <link rel="stylesheet" href="{{asset('template/assets/dest/css/productstyle.css')}}">
     @stack('style')
 </head>
 
