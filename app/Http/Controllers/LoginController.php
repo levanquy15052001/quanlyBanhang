@@ -2,33 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
-    public function loginForm(Request $request)
+    public function loginForm(LoginRequest  $request)
     {
         if ($request->getMethod() == 'GET') {
             return view('login');
         }
 
-        $rule =  [
-            'email' => 'required|string|email',
-            'password' => 'required',
-        ];
+        $credentials = $request->getCredentials();
 
-        $request->validate($rule);
+        if(!Auth::validate($credentials)):
+            return redirect()->to('login')
+                ->withErrors(trans('auth.failed'));
+        endif;
 
-        $credentials = $request->only(['email', 'password']);
-        if (Auth::attempt($credentials))
-        {
-                return redirect()->route('homePage');
-        }else{
-            return redirect()->route('login')
-                ->with('error','Email-Address And Password Are Wrong.');
-        }
+        $user = Auth::getProvider()->retrieveByCredentials($credentials);
+
+        Auth::login($user);
+
+        return $this->authenticated($request, $user);
 
     }
 
@@ -39,5 +37,10 @@ class LoginController extends Controller
         Auth::logout();
 
         return redirect('login');
+    }
+
+    protected function authenticated(Request $request, $user) 
+    {
+        return redirect()->intended();
     }
 }

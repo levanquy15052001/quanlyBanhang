@@ -34,6 +34,13 @@
                                 <span class="error">{{ $errors->first('name') }}</span>
                             @endif
                         </div>
+                        <div class="form-block">
+                            <label for="username">User Name</label>
+                            <input type="text" id="username" name="username" value="{{ old('username') }}">
+                            @if ($errors->has('username'))
+                                <span class="error">{{ $errors->first('username') }}</span>
+                            @endif
+                        </div>
 
                         <div class="form-block">
                             <label for="password">Tạo Mật Khẩu</label>
@@ -59,3 +66,12 @@
         </div> <!-- #content -->
     </div> <!-- .container -->
 @endsection
+@push('script')
+    <script>
+        $('#email').on('change',function(){
+            let name = this.value.split("@")[0];
+            document.getElementById("username").value = name;
+        });
+    
+    </script>
+@endpush

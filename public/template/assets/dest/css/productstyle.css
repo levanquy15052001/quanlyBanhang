@@ -14,6 +14,7 @@
     width: 45%;
     margin-top: 60px;
     height: 500px;
+    margin-left: 30px;
 }
 
 /* Left Column */
@@ -66,12 +67,7 @@
     display: inline-block;
 }
 
-.color-choose input[type=&amp;
-quot;
-radio&amp;
-quot;
-
-] {
+.color-choose input[type=&amp;quot;radio&amp;quot;] {
     display: none;
 }
 
@@ -190,6 +186,7 @@ quot;
 .product-price {
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .product-price span {
