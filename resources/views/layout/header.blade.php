@@ -13,7 +13,7 @@
                         <li><a href="#"><i class="fa fa-user"></i></a></li>
                         <li><a href="{{route('logout')}}">Đăng Xuất</a></li>
                     @else
-                        <li><a href="">Đăng kí</a></li>
+                        <li><a href="{{route('register')}}">Đăng kí</a></li>
                         <li><a href="{{route('login')}}">Đăng nhập</a></li>
                     @endif
                 </ul>
@@ -106,7 +106,7 @@
             <div class="visible-xs clearfix"></div>
             <nav class="main-menu">
                 <ul class="l-inline ov">
-                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="{{route('homePage')}}">Trang chủ</a></li>
                     <li><a href="#">Sản phẩm</a>
                         <ul class="sub-menu">
                             <li><a href="product_type.html">Sản phẩm 1</a></li>

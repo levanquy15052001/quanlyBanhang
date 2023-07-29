@@ -50,17 +50,7 @@
     <script src="{{ asset('template/assets/dest/js/wow.min.js') }}"></script>
     <!--customjs-->
     <script src="{{ asset('template/assets/dest/js/custom2.js') }}"></script>
-    <script>
-        $(document).ready(function($) {
-            $(window).scroll(function() {
-                if ($(this).scrollTop() > 150) {
-                    $(".header-bottom").addClass('fixNav')
-                } else {
-                    $(".header-bottom").removeClass('fixNav')
-                }
-            })
-        })
-    </script>
+    @stack('script')
 </body>
 
 </html>
