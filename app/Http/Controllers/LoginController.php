@@ -18,16 +18,15 @@ class LoginController extends Controller
     {
         $credentials = $request->getCredentials();
 
-        if(!Auth::validate($credentials)):
-            return redirect()->to('login')
-                ->withErrors(trans('auth.failed'));
+        if(Auth::validate($credentials)):
+            $user = Auth::getProvider()->retrieveByCredentials($credentials);
+
+            Auth::login($user);
+    
+            return $this->authenticated($request, $user);
         endif;
-
-        $user = Auth::getProvider()->retrieveByCredentials($credentials);
-
-        Auth::login($user);
-
-        return $this->authenticated($request, $user);
+        return redirect()->to('login')
+        ->withErrors('warning' , 'Login Not Success');
     }
 
     public function logout()
