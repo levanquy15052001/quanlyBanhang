@@ -17,6 +17,7 @@
     <link rel="stylesheet" title="style" href="{{ asset('template/assets/dest/css/huong-style.css') }}">
     <link rel="stylesheet" href="{{asset('template/assets/dest/css/productstyle.css')}}">
     <link rel="stylesheet" href="{{asset('css/common.css')}}">
+    <link href="{{asset('css/toastr.css')}}" rel="stylesheet"/>
     @stack('style')
 </head>
 
@@ -50,7 +51,9 @@
     <script src="{{ asset('template/assets/dest/js/waypoints.min.js') }}"></script>
     <script src="{{ asset('template/assets/dest/js/wow.min.js') }}"></script>
     <script src="{{ asset('template/assets/dest/js/custom2.js') }}"></script>
+    <script src="{{asset('js/toastr.js')}}"></script>
     @stack('script')
+    @include('common.toastr')
 </body>
 
 </html>

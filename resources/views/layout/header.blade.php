@@ -11,10 +11,10 @@
                 <ul class="top-details menu-beta l-inline">
                     @if (Auth::check())
                         <li><a href="#"><i class="fa fa-user"></i>{{Auth::user()->name}}</a></li>
-                        <li><a href="{{route('logout')}}">Đăng Xuất</a></li>
+                        <li><a href="{{route('logout')}}">Logout</a></li>
                     @else
-                        <li><a href="{{route('register')}}">Đăng kí</a></li>
-                        <li><a href="{{route('login')}}">Đăng nhập</a></li>
+                        <li><a href="{{route('register')}}">Register</a></li>
+                        <li><a href="{{route('login')}}">Login</a></li>
                     @endif
                 </ul>
             </div>
@@ -39,7 +39,7 @@
 
                 <div class="beta-comp">
                     <div class="cart">
-                        <div class="beta-select"><i class="fa fa-shopping-cart"></i> Giỏ hàng (Trống) <i
+                        <div class="beta-select"><i class="fa fa-shopping-cart"></i> Cart @if(Auth::check()) {{'ok'}} @else('Trống') @endif <i
                                 class="fa fa-chevron-down"></i></div>
                         <div class="beta-dropdown cart-body">
                             <div class="cart-item">
@@ -88,7 +88,7 @@
 
                                 <div class="center">
                                     <div class="space10">&nbsp;</div>
-                                    <a href="checkout.html" class="beta-btn primary text-center">Đặt hàng <i
+                                    <a href="{{route('order.index')}}" class="beta-btn primary text-center">Order <i
                                             class="fa fa-chevron-right"></i></a>
                                 </div>
                             </div>

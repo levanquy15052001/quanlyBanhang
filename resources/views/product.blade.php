@@ -12,7 +12,8 @@
 </div>
 
     <main class="container_product">
- 
+      <form action="{{route('order.store')}}" method="POST">
+        @csrf
         <!-- Left Column / Headphones Image -->
         <div class="left-column">
           <img data-image="red" class="active" src="{{ asset('template/image/product/'.$data['product']->image) }}" alt="">
@@ -48,8 +49,9 @@
             <span>{{$data['product']->price_sale ?? $data['product']->price}} $</span>
           </div> 
           <div class="product-price">
-            <a href="#" class="cart-btn">Add to cart</a>
+            <button  type="submit" class="cart-btn">Add to cart</button>
           </div>
         </div>
+      </form>
       </main>
 @endsection

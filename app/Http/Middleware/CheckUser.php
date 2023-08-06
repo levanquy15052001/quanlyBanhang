@@ -21,6 +21,6 @@ class CheckUser
         {
             return $next($request);
         }
-        return redirect()->route('homePage');
+        return redirect()->route('homePage')->with('warning','Please log in!');
     }
 }
