@@ -16,8 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/',[HomeController::class,'index'])->name('homePage');
-Route::match(['get', 'post'], '/login', [LoginController::class, 'loginForm'])->name('login');
+Route::get('/login', [LoginController::class, 'loginForm'])->name('login');
+Route::post('/login',[LoginController::class,'postLogin'])->name('postLogin');
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 Route::get('/register',[RegisterController::class,'registerForm'])->name('register');
 Route::post('/register',[RegisterController::class,'store'])->name('store.register');
-Route::get('/product/{product}',[HomeController::class,'show'])->name('product.detail');
+
+Route::middleware('checkUser')->group(function () {
+    Route::get('/product/{product}',[HomeController::class,'show'])->name('product.detail');
+});

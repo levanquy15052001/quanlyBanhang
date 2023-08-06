@@ -9,25 +9,24 @@ use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
-    public function loginForm(LoginRequest  $request)
+    public function loginForm()
     {
-        if ($request->getMethod() == 'GET') {
             return view('login');
-        }
+    }
 
+    public function postLogin(LoginRequest  $request)
+    {
         $credentials = $request->getCredentials();
 
-        if(!Auth::validate($credentials)):
-            return redirect()->to('login')
-                ->withErrors(trans('auth.failed'));
+        if(Auth::validate($credentials)):
+            $user = Auth::getProvider()->retrieveByCredentials($credentials);
+
+            Auth::login($user);
+    
+            return $this->authenticated($request, $user);
         endif;
-
-        $user = Auth::getProvider()->retrieveByCredentials($credentials);
-
-        Auth::login($user);
-
-        return $this->authenticated($request, $user);
-
+        return redirect()->to('login')
+        ->withErrors('warning' , 'Login Not Success');
     }
 
     public function logout()
