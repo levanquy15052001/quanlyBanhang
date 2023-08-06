@@ -9,12 +9,13 @@ use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
-    public function loginForm(LoginRequest  $request)
+    public function loginForm()
     {
-        if ($request->getMethod() == 'GET') {
             return view('login');
-        }
+    }
 
+    public function postLogin(LoginRequest  $request)
+    {
         $credentials = $request->getCredentials();
 
         if(!Auth::validate($credentials)):
@@ -27,7 +28,6 @@ class LoginController extends Controller
         Auth::login($user);
 
         return $this->authenticated($request, $user);
-
     }
 
     public function logout()

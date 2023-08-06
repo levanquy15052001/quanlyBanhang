@@ -1,70 +1,103 @@
 @extends('layout.master')
 @push('style')
-    <style>
-        .error{
-            color: red
-        }
-    </style>
+
 @endpush
 @section('content')
-    <div class="container">
-        <div id="content">
+<div class="container">
+    <div class="inner-header">
+        <div class="container">
+            <div class="pull-left">
+                <h6 class="inner-title">Register</h6>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <form method="POST" action="{{ route('store.register') }}">
+                        @csrf
+                        <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
-            <form action="{{ route('register') }}" method="POST" class="beta-form-checkout">
-                @csrf
-                <div class="row">
-                    <div class="col-sm-3"></div>
-                    <div class="col-sm-6">
-                        <h4>Đăng kí</h4>
-                        <div class="space20">&nbsp;</div>
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"  autocomplete="name" autofocus>
 
-
-                        <div class="form-block">
-                            <label for="email">Email</label>
-                            <input type="text" id="email" name="email" value="{{ old('email') }}">
-                            @if ($errors->has('email'))
-                                <span class="error">{{ $errors->first('email') }}</span>
-                            @endif
-                        </div>
-
-                        <div class="form-block">
-                            <label for="name">Họ Và Tên</label>
-                            <input type="text" id="name" name="name" value="{{ old('name') }}">
-                            @if ($errors->has('email'))
-                                <span class="error">{{ $errors->first('name') }}</span>
-                            @endif
-                        </div>
-                        <div class="form-block">
-                            <label for="username">User Name</label>
-                            <input type="text" id="username" name="username" value="{{ old('username') }}">
-                            @if ($errors->has('username'))
-                                <span class="error">{{ $errors->first('username') }}</span>
-                            @endif
+                                @error('name')
+                                    <span class="errors" role="alert">
+                                       {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
 
-                        <div class="form-block">
-                            <label for="password">Tạo Mật Khẩu</label>
-                            <input type="password" id="password" name="password">
-                            @if ($errors->has('password'))
-                                <span class="error">{{ $errors->first('password') }}</span>
-                            @endif
+                        <div class="row mb-3">
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
+
+                                @error('email')
+                                    <span class="errors" role="alert">
+                                       {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
-                        <div class="form-block">
-                            <label for="confirm_password">Xác Nhận Mật Khẩu</label>
-                            <input type="password" id="confirm_password" name="confirm_password">
-                            @if ($errors->has('confirm_password'))
-                                <span class="error">{{ $errors->first('confirm_password') }}</span>
-                            @endif
+                        <div class="row mb-3">
+                            <label for="username" class="col-md-4 col-form-label text-md-end">{{ __('Username') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}"  autocomplete="username" autofocus>
+
+                                @error('username')
+                                    <span class="errors" role="alert">
+                                       {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
-                        <div class="form-block">
-                            <button type="submit" class="btn btn-primary">Đăng ký</button>
+                        <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
+
+                                @error('password')
+                                    <span class="errors" role="alert">
+                                       {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-3"></div>
+
+                        <div class="row mb-3">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
+                                @error('password_confirmation')
+                                    <span class="errors" role="alert">
+                                       {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                     
+                        <div class="row mb-1">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Register') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </form>
-        </div> <!-- #content -->
-    </div> <!-- .container -->
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 @push('script')
     <script>

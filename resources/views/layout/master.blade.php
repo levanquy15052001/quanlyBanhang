@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="{{ asset('template/assets/dest/css/animate.css') }}">
     <link rel="stylesheet" title="style" href="{{ asset('template/assets/dest/css/huong-style.css') }}">
     <link rel="stylesheet" href="{{asset('template/assets/dest/css/productstyle.css')}}">
+    <link rel="stylesheet" href="{{asset('css/common.css
+    ')}}">
     @stack('style')
 </head>
 
@@ -50,6 +52,11 @@
     <script src="{{ asset('template/assets/dest/js/wow.min.js') }}"></script>
     <!--customjs-->
     <script src="{{ asset('template/assets/dest/js/custom2.js') }}"></script>
+    @if (!empty($errors->all()))
+            @foreach ($errors->all() as $error)
+                toastr.error("{{$error}}")
+            @endforeach
+    @endif
     @stack('script')
 </body>
 
