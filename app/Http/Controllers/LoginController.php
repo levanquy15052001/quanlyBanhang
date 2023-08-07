@@ -20,13 +20,10 @@ class LoginController extends Controller
 
         if(Auth::validate($credentials)):
             $user = Auth::getProvider()->retrieveByCredentials($credentials);
-
             Auth::login($user);
-    
-            return $this->authenticated($request, $user);
+            return $this->authenticated($request, $user)->with('success','Welcom User '.$user->name);
         endif;
-        return redirect()->to('login')
-        ->withErrors('warning' , 'Login Not Success');
+        return redirect()->to('login')->with('warning' , 'Login Not Success');
     }
 
     public function logout()
