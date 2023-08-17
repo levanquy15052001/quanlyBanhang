@@ -18,8 +18,6 @@
         <div class="left-column">
           <img data-image="red" class="active" src="{{ asset('template/image/product/'.$data['product']->image) }}" alt="">
         </div>
-       
-       
         <!-- Right Column -->
         <div class="right-column">
        
