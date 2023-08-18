@@ -24,8 +24,10 @@ Route::get('/register',[RegisterController::class,'registerForm'])->name('regist
 Route::post('/register',[RegisterController::class,'store'])->name('store.register');
 Route::get('/product/{product}',[HomeController::class,'show'])->name('product.detail');
 
-Route::group(['namespace' => 'order.'], function()
-{
-    Route::get('/order',[OrderController::class,'index'])->name('index');
-    Route::post('/order',[OrderController::class,'store'])->name('store');
+Route::group(['middleware'=>'checkUser'],function(){
+    Route::name('order.')->prefix('order')->group(function() {
+        Route::get('/',[OrderController::class,'index'])->name('index');
+        Route::post('/order',[OrderController::class,'store'])->name('store');        
+    });
 });
+  
