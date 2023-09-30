@@ -16,9 +16,9 @@
                                 data-oheight="undefined">
                                 <div class="tp-bgimg defaultimg" data-lazyload="undefined" data-bgfit="cover"
                                     data-bgposition="center center" data-bgrepeat="no-repeat" data-lazydone="undefined"
-                                    src="{{ asset('template/image/slide/'.$item->name) }}"
-                                    data-src="{{ asset('template/image/slide/'.$item->name) }}"
-                                    style="background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-image: url('{{ asset('template/image/slide/'.$item->name) }}'); background-size: cover; background-position: center center; width: 100%; height: 100%; opacity: 1; visibility: inherit;">
+                                    src="{{ asset('template/image/slide/'.$item->image) }}"
+                                    data-src="{{ asset('template/image/slide/'.$item->image) }}"
+                                    style="background-color: rgba(0, 0, 0, 0); background-repeat: no-repeat; background-image: url('{{ asset('template/image/slide/'.$item->image) }}'); background-size: cover; background-position: center center; width: 100%; height: 100%; opacity: 1; visibility: inherit;">
                                 </div>
                             </div>
 
