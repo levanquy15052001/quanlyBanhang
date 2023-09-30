@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $slide=Slide::all();
-        View::share('slide',$slide); 
+        // $slide=Slide::all();
+        // View::share('slide',$slide); 
     }
 }
